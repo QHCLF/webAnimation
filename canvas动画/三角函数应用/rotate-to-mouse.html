@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <canvas id="canvas"></canvas>
+        <canvas id="canvas" style="background-color: pink;"></canvas>
     </div>
 </body>
 </html>
@@ -36,7 +36,6 @@
 <script type="text/javascript">
 window.onload = function(){
            var canvas = document.getElementById("canvas");
-           console.log(canvas);
            var context = canvas.getContext("2d");
            var mouse = util.captureMouse(canvas);
            
