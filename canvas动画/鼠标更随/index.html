@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="../util/ball.js"></script>
+    <script type="text/javascript" src="../util/util.js"></script>
+    <title>鼠标更随</title>
+</head>
+<body>
+    <canvas id="canvas" width="500px" height="500px" style="background-color: burlywood;"></canvas>
+</body>
+</html>
+
+<script type="text/javascript">
+    window.onload = function(){
+        const canvas = document.getElementById('canvas');
+        let ctx = canvas.getContext('2d'), 
+        mouse = util.captureMouse(canvas), 
+        ball = new Ball(20, 'red');
+        ball.draw(ctx);
+        canvas.addEventListener('mousemove', function(e){
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ball.x = mouse.x;
+            ball.y = mouse.y;
+            ball.draw(ctx);
+        }, false);
+
+    }
+</script>
