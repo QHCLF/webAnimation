@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>边框动画</title>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="box_2">
+        <div class="top"></div>
+        <div class="bottom"></div>
+    </div>
+</body>
+</html>
+<style>
+.box, .box_2{
+    width: 200px;
+    height: 100px;
+    margin-bottom: 22px;
+    background-color: wheat;
+    position: relative;
+}
+.box::before, .box::after{
+    content: "";
+    display: block;
+    width: 0;
+    height: 0;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 100;
+}
+
+/* 鼠标离开时的效果 */
+.box::before{
+    top: 0;
+    left: 0;
+    transition: border-color 0s ease-in 0.8s,width 0.2s ease-in 0.6s,height 0.2s ease-in 0.4s;
+}
+
+.box::after{
+    right: 0;
+    bottom: 0;
+    transition: border-color 0s ease-in 0.4s, width 0.2s ease-in 0.2s, height 0.2s ease-in;
+}
+
+/* 鼠标悬浮时的效果 */
+.box:hover::before{
+    width: 100%;
+    height: 100%;
+    transition:  width 0.2s ease-in, height 0.2s ease-in 0.2s;
+    border-top-color: teal;
+    border-right-color: teal;
+}
+
+.box:hover::after{
+    width: 100%;
+    height: 100%;
+    transition: border-color 0s ease-in 0.4s, width 0.2s ease-in 0.4s, height 0.3s ease-in 0.6s;
+    border-bottom-color: teal;
+    border-left-color: teal;
+}
+
+/* box_2的边框动画样式 */
+
+.box_2 .top::after, .box_2 .top::before, .box_2 .bottom::after, .box_2 .bottom::before{
+    content: '';
+    position: absolute;
+    opacity: 0;
+    transform: scale(0, 0);
+    background-color: teal;
+    z-index: 100;
+    transition: transform .5s ease, opacity .5s ease;
+}
+
+.box_2 .top::before{
+    width: 100%;
+    height: 1px;
+    top: 0;
+    left: 0;
+    transform-origin: left;
+}
+
+.box_2 .top::after{
+    width: 1px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform-origin: top;
+}
+
+.box_2:hover .top::before{
+    opacity: 1;
+    transform: scaleX(1);
+}
+
+.box_2:hover .top::after{
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+.box_2 .bottom::before{
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    right: 0;
+    transform-origin: right;
+}
+
+.box_2 .bottom::after{
+    width: 1px;
+    height: 100%;
+    bottom: 0;
+    right: 0;
+    transform-origin: bottom;
+}
+
+.box_2:hover .bottom::before{
+    transform: scaleX(1);
+    opacity: 1;
+}
+
+.box_2:hover .bottom::after{
+    transform: scaleY(1);
+    opacity: 1;
+}
+
+</style>
