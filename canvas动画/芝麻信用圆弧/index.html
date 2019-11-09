@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>圆弧动画</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .wrap {
+        width: 80%;
+        height: 90vh;
+        box-sizing: border-box;
+        margin-left: 10%;
+        margin-top: 5vh;
+        padding-left: 5%;
+        padding-left: 5%;
+        border-radius: 5px;
+        background-color: #fff;
+        position: relative;
+        box-shadow: 0 0 10px 2px rgba(255, 107, 0, 0.4), 0 0 22px 11px rgba(255, 203, 0, 0.13);
+        display: flex;
+        float: left;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btn {
+        width: 80%;
+        height: 7vh;
+        text-align: center;
+        line-height: 7vh;
+        position: absolute;
+        bottom: 10vh;
+        left: 10%;
+        background: rgba(255, 107, 0, 0.8);
+        border-radius: 7vh;
+        color: #fff;
+        box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.4);
+        transition: box-shadow 2s ease;
+    }
+
+    .btn:hover {
+        cursor: pointer;
+        box-shadow: 0 0 10px 2px rgba(255, 107, 0, 0.4), 0 0 22px 11px rgba(255, 203, 0, 0.13);
+    }
+</style>
+
+<body>
+    <div style="background: orangered; position: relative;overflow: hidden;height: 100vh;">
+        <div class="wrap">
+            <div>
+                <div id="clockBoard">
+                    <canvas id="clock" width="550px" height="560px"></canvas>
+                    <canvas id="pointer" width="550px" height="560px"></canvas>
+                </div>
+                <div class="btn">按钮</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script type="text/javascript">
+    window.onload = function () {
+        let canvas = document.getElementById('clock');
+        let ctx = canvas.getContext('2d');
+
+        let centerX = canvas.width / 2, //Canvas中心点x轴坐标
+            centerY = canvas.height / 2, //Canvas中心点y轴坐标
+            rad = 1.327 * Math.PI / 600, //将度数分成600份，那么每一份就是rad度
+            speed = 350; //加载的快慢就靠它了
+
+        function drawCircle() {
+            // ctx.translate(0, 200);
+            //绘制外圆环
+            ctx.beginPath();
+            ctx.arc(centerX, centerY + 200, 120, 30 / 180 * Math.PI, 150 / 180 * Math.PI, true);
+            ctx.strokeStyle = 'rgba(255, 107, 0, 0.4)';
+            ctx.lineWidth = '3';
+            ctx.lineCap = "round";
+            ctx.stroke();
+            ctx.closePath();
+
+            //绘制内圆环
+            ctx.beginPath();
+            ctx.arc(centerX, centerY + 200, 110, 30 / 180 * Math.PI, 150 / 180 * Math.PI, true);
+            ctx.strokeStyle = 'rgba(255, 107, 0, 0.4)';
+            ctx.lineWidth = 8;
+            ctx.lineCap = "round";
+            ctx.stroke();
+            ctx.closePath();
+        }
+
+
+        //绘制橙色内环
+        function orangeCircle(n) {
+            ctx.beginPath();
+            ctx.arc(centerX, centerY + 200, 110, 150 / 180 * Math.PI + rad * (n - 350), 150 / 180 * Math.PI, true);
+            ctx.strokeStyle = 'rgba(255, 107, 0, 0.8)';
+            ctx.lineWidth = 8;
+            ctx.lineCap = "round";
+            ctx.stroke();
+            ctx.closePath();
+        }
+
+        //数字和文字绘制
+        function text(n, text) {
+            ctx.save();
+            ctx.beginPath();
+            ctx.fillStyle = "rgba(255, 107, 0, 0.8)";
+            ctx.font = "55px bold";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(n, centerX, centerY + 170);
+            ctx.font = '18px bold';
+            if (text) {
+                ctx.fillText(text, centerX, centerY + 230);
+            }
+            ctx.stroke();
+            ctx.closePath();
+
+        }
+
+        //动画循环
+        (function drawFrame() {
+            if (speed <= 750) {
+                requestAnimationFrame(drawFrame, canvas);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawCircle();
+                if (speed === 750) {
+                    text(speed, '信用良好');
+                } else {
+                    text(speed, '');
+                }
+                orangeCircle(speed);
+                speed += 1;
+            }
+        })();
+    }
+</script>
