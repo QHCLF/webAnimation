@@ -14,6 +14,11 @@
         box-sizing: border-box;
     }
 
+    body, html{
+        width: 100%;
+        height: 100%;
+    }
+
     .wrap {
         width: 80%;
         height: 90vh;
@@ -57,11 +62,10 @@
     <div style="background: orangered; position: relative;overflow: hidden;height: 100vh;">
         <div class="wrap">
             <div>
-                <div id="clockBoard">
-                    <canvas id="clock" width="550px" height="560px"></canvas>
-                    <canvas id="pointer" width="550px" height="560px"></canvas>
+                <div id="clockBoard" style="margin-bottom: 100px;">
+                    <canvas id="clock" width="550px" height="500px" style="display: block;"></canvas>
                 </div>
-                <div class="btn">按钮</div>
+                <div class="btn" οnclick= "window.onload()">按钮</div>
             </div>
         </div>
     </div>
@@ -82,7 +86,7 @@
             // ctx.translate(0, 200);
             //绘制外圆环
             ctx.beginPath();
-            ctx.arc(centerX, centerY + 200, 120, 30 / 180 * Math.PI, 150 / 180 * Math.PI, true);
+            ctx.arc(centerX, centerY, 120, 30 / 180 * Math.PI, 150 / 180 * Math.PI, true);
             ctx.strokeStyle = 'rgba(255, 107, 0, 0.4)';
             ctx.lineWidth = '3';
             ctx.lineCap = "round";
@@ -91,7 +95,7 @@
 
             //绘制内圆环
             ctx.beginPath();
-            ctx.arc(centerX, centerY + 200, 110, 30 / 180 * Math.PI, 150 / 180 * Math.PI, true);
+            ctx.arc(centerX, centerY, 110, 30 / 180 * Math.PI, 150 / 180 * Math.PI, true);
             ctx.strokeStyle = 'rgba(255, 107, 0, 0.4)';
             ctx.lineWidth = 8;
             ctx.lineCap = "round";
@@ -103,7 +107,7 @@
         //绘制橙色内环
         function orangeCircle(n) {
             ctx.beginPath();
-            ctx.arc(centerX, centerY + 200, 110, 150 / 180 * Math.PI + rad * (n - 350), 150 / 180 * Math.PI, true);
+            ctx.arc(centerX, centerY, 110, 150 / 180 * Math.PI + rad * (n - 350), 150 / 180 * Math.PI, true);
             ctx.strokeStyle = 'rgba(255, 107, 0, 0.8)';
             ctx.lineWidth = 8;
             ctx.lineCap = "round";
@@ -119,14 +123,13 @@
             ctx.font = "55px bold";
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
-            ctx.fillText(n, centerX, centerY + 170);
+            ctx.fillText(n, centerX, centerY);
             ctx.font = '18px bold';
             if (text) {
-                ctx.fillText(text, centerX, centerY + 230);
+                ctx.fillText(text, centerX, centerY+30);
             }
             ctx.stroke();
             ctx.closePath();
-
         }
 
         //动画循环

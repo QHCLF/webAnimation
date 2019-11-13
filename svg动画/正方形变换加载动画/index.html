@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>正方形-三角形加载动画</title>
+</head>
+
+<body>
+    <svg>
+            <path fill="#1EB287">
+                    <animate 
+                             attributeName="d" 
+                             dur="1440ms" 
+                             repeatCount="indefinite"
+                             keyTimes="0;
+                                       .0625;
+                                       .208333333;
+                                       .3125;
+                                       .395833333;
+                                       .645833333;
+                                       .833333333;
+                                       1"
+                             calcMode="spline" 
+                             keySplines="0,0,1,1;
+                                         .42,0,.58,1;
+                                         .42,0,1,1;
+                                         0,0,.58,1;
+                                         .42,0,.58,1;
+                                         .42,0,.58,1;
+                                         .42,0,.58,1"
+                             values="M 0,0 
+                                     C 50,0 50,0 100,0
+                                     100,50 100,50 100,100
+                                     50,100 50,100 0,100
+                                     0,50 0,50 0,0
+                                     Z;
+                
+                                     M 0,0 
+                                     C 50,0 50,0 100,0
+                                     100,50 100,50 100,100
+                                     50,100 50,100 0,100
+                                     0,50 0,50 0,0
+                                     Z;
+                
+                                     M 50,0 
+                                     C 75,25 75,25 100,50 
+                                     75,75 75,75 50,100
+                                     25,75 25,75 0,50
+                                     25,25 25,25 50,0
+                                     Z;
+                
+                                     M 25,50 
+                                     C 37.5,25 37.5,25 50,0 
+                                     75,50 75,50 100,100
+                                     50,100 50,100 0,100
+                                     12.5,75 12.5,75 25,50
+                                     Z;
+                
+                                     M 25,50 
+                                     C 37.5,25 37.5,25 50,0 
+                                     75,50 75,50 100,100
+                                     50,100 50,100 0,100
+                                     12.5,75 12.5,75 25,50
+                                     Z;
+                
+                                     M 50,0
+                                     C 77.6,0 100,22.4 100,50 
+                                     100,77.6 77.6,100 50,100
+                                     22.4,100, 0,77.6, 0,50
+                                     0,22.4, 22.4,0, 50,0
+                                     Z;
+                                     
+                                     M 50,0
+                                     C 77.6,0 100,22.4 100,50 
+                                     100,77.6 77.6,100 50,100
+                                     22.4,100, 0,77.6, 0,50
+                                     0,22.4, 22.4,0, 50,0
+                                     Z;
+                                     
+                                     M 100,0 
+                                     C 100,50 100,50 100,100
+                                     50,100 50,100 0,100
+                                     0,50 0,50 0,0
+                                     50,0 50,0 100,0
+                                     Z;"/>
+                                </path>
+    </svg>
+
+    <svg>
+            <path d="M10,110  A120,120 -45 0,1 110 10 A120,120 -45 0,1 10,110"
+            stroke="lightgrey" stroke-width="2" 
+            fill="none" id="theMotionPath"/>
+        <circle cx="10" cy="110" r="3" fill="lightgrey"  />
+        <circle cx="110" cy="10" r="3" fill="lightgrey"  />
+      
+        <!-- Red circle which will be moved along the motion path. -->
+        <circle cx="" cy="" r="5" fill="red">
+      
+          <!-- Define the motion path animation -->
+          <animateMotion dur="6s" repeatCount="indefinite">
+            <mpath xlink:href="#theMotionPath"/>
+          </animateMotion>
+        </circle>
+    </svg>
+
+    <svg width="350" height="160">
+            <g class="layer" transform="translate(60,10)">
+              <circle r="5" cx="0"   cy="105" />
+              <circle r="5" cx="90"  cy="90"  />
+              <circle r="5" cx="180" cy="60"  />
+              <circle r="5" cx="270" cy="0"   />
+               
+          
+              <g class="y axis">
+                <line x1="0" y1="0" x2="0" y2="120" style="stroke:rgb(0,0,0);stroke-width:2" />
+                <text x="-40" y="105" dy="5">$10</text>
+                <text x="-40" y="0"   dy="5">$80</text>
+              </g>
+              <g class="x axis" transform="translate(0, 120)">
+                <line x1="0" y1="0" x2="270" y2="0" style="stroke:rgb(0,0,0);stroke-width:2"/>
+                <text x="-30"   y="20">January 2014</text>
+                <text x="240" y="20">April</text>
+              </g>
+            </g>
+          </svg>
+
+          <svg width="300" height="180">
+                <path d="
+                  M 18,3
+                  L 46,3
+                  L 46,40
+                  L 61,40
+                  L 32,68
+                  L 3,40
+                  L 18,40
+                  Z
+                "></path>
+                </svg>
+</body>
+
+</html>
